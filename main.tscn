@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2irioekt1g3t"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_l04ck"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_mv38k"]
+number_color = Color(0.478431, 0.72549, 0.478431, 1)
+symbol_color = Color(0.447059, 0.258824, 0.92549, 1)
+function_color = Color(0.803922, 0, 0, 1)
+member_variable_color = Color(0.12549, 0.541176, 0.588235, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdj2a"]
+font_size = 24
+
+[node name="main" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l04ck")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+split_offset = 80
+
+[node name="InputMarginContainer" type="MarginContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/InputMarginContainer"]
+layout_mode = 2
+
+[node name="JsonInput" type="TextEdit" parent="HSplitContainer/InputMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Enter valid JSON text here"
+draw_tabs = true
+draw_spaces = true
+syntax_highlighter = SubResource("CodeHighlighter_mv38k")
+minimap_draw = true
+caret_blink = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/InputMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/InputMarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ConvertButton" type="Button" parent="HSplitContainer/InputMarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Convert"
+
+[node name="ClearButton" type="Button" parent="HSplitContainer/InputMarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clear"
+
+[node name="OutputMarginContainer" type="MarginContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/OutputMarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/OutputMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Converted JSON into Variant:"
+label_settings = SubResource("LabelSettings_hdj2a")
+
+[node name="OutputResult" type="RichTextLabel" parent="HSplitContainer/OutputMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+selection_enabled = true
